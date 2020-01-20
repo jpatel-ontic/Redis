@@ -5,11 +5,10 @@ import org.redisson.api.RMap;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan
+//@ComponentScan
 public class ApplicationConfiguration {
 
     @Bean
@@ -22,7 +21,7 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    RMap<String, User> redisTemplate(RedissonClient client) {
+    RMap<String, User> map(RedissonClient client) {
         RMap<String, User> map = client.getMap("user");
         return map;
     }

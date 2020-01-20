@@ -12,9 +12,13 @@ import java.util.Collection;
 @RestController
 @RequestMapping("/user")
 public class UserResource {
-    @Autowired
-    private UserRepository userRepository;
 
+    private final UserRepository userRepository;
+
+    @Autowired
+    public UserResource(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public User add(@Valid @RequestBody User user) {

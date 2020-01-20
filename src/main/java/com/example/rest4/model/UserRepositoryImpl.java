@@ -8,24 +8,26 @@ import java.util.Collection;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
+
     @Autowired
-    private RMap<String, User> redisTemplate;
+    private RMap<String, User> map;
 
     @Override
     public void save(User user) {
-        redisTemplate.put(user.getId(), user);
+
+        map.put(user.getId(), user);
     }
 
     @Override
     public Collection<User> findAll() {
-        return redisTemplate.values();
+        return map.values();
 
     }
 
 
     @Override
     public User findById(String id) {
-        return (User) redisTemplate.get(id);
+        return (User) map.get(id);
     }
 
     @Override
@@ -35,6 +37,6 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public void delete(String id) {
-        redisTemplate.remove(id);
+        map.remove(id);
     }
 }
